@@ -1,0 +1,51 @@
+<template>
+    <v-container class="fill-height">
+        <v-row>
+            <v-col class="d-flex justify-center">
+                <v-card max-width="500px" width="100%">
+                    <v-card-title>Авторизация</v-card-title>
+                    <v-form v-model="valid" class="mb-5 pl-4 pr-4">
+                        <v-text-field label="Email"
+                                      name="email"
+                                      v-model="email"
+                                      :rules="rulesForEmail"></v-text-field>
+                        <v-text-field v-model="password"
+                                      class="pt-0"
+                                      name="password"
+                                      label="Пароль"
+                                      :rules="rulesForPassword"
+                                      type="password"></v-text-field>
+                        <v-btn :disabled="!valid" class="mt-5" color="deep-purple accent-3" width="100%" large :dark="valid">Войти</v-btn>
+                    </v-form>
+                </v-card>
+            </v-col>
+        </v-row>
+    </v-container>
+</template>
+
+<script>
+    export default {
+        name: "Auth",
+        data() {
+            return {
+                valid: "",
+                password: "",
+                email: "",
+                rulesForEmail: [
+                    value => !!value || 'Обязательное поле',
+                    value => {
+                        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                        return pattern.test(value) || 'Некорректный email'
+                    },
+                ],
+                rulesForPassword: [
+                    value => value.length < 6 ? 'Не менее 6 символов' : true
+                ]
+            }
+        }
+    }
+</script>
+
+<style scoped>
+
+</style>
