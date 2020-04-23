@@ -5,7 +5,6 @@
                 <v-card-title>Управление соц. сетями</v-card-title>
                 <v-tabs v-model="tabs"
                         show-arrows
-                        class="pl-4 pr-4"
                         fixed-tabs>
                     <v-tabs-slider></v-tabs-slider>
                     <v-tab  v-for="soc, i in socials"
@@ -14,7 +13,7 @@
                         <img :src="soc.picture" alt="">
                     </v-tab>
                 </v-tabs>
-
+                <v-divider></v-divider>
                 <v-tabs-items v-model="tabs" class="pl-4 pr-4">
                     <v-tab-item
                             v-for="soc, i in socials"
