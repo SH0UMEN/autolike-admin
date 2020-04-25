@@ -19,7 +19,7 @@
                             v-for="soc, i in socials"
                             :key="i"
                             :value="'social-' + i">
-                        <social-settings :social="soc"></social-settings>
+                        <social-settings :social="soc" :key="i"></social-settings>
                     </v-tab-item>
                 </v-tabs-items>
             </v-card>

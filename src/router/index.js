@@ -7,9 +7,22 @@ import Bots from '../views/Bots'
 import SocialsManagement from '../views/SocialsManagement'
 import IndexTemplate from '../views/IndexTemplate'
 import Auth from '../views/Auth'
+import store from '../store'
 import Statistics from '../views/Statistics'
 
 Vue.use(VueRouter)
+
+function isAuthenticated(to, from, next) {
+    if(store.getters.isAuthenticated) {
+        next()
+        // if(!store.getters.getUser) {
+        //
+        // }
+    } else {
+        next({ name: "auth" })
+    }
+    return
+}
 
 const routes = [
     {
@@ -21,6 +34,7 @@ const routes = [
         path: "/",
         name: "index",
         component: IndexTemplate,
+        beforeEnter: isAuthenticated,
         redirect: () => {
             return { name: 'current-requests' }
         },

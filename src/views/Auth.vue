@@ -4,18 +4,22 @@
             <v-col class="d-flex justify-center">
                 <v-card max-width="500px" width="100%">
                     <v-card-title>Авторизация</v-card-title>
-                    <v-form v-model="valid" class="mb-5 pl-4 pr-4">
+                    <v-form v-model="valid" @submit.prevent="login" class="mb-5 pl-4 pr-4">
                         <v-text-field label="Email"
                                       name="email"
                                       v-model="email"
                                       :rules="rulesForEmail"></v-text-field>
                         <v-text-field v-model="password"
-                                      class="pt-0"
+                                      class="pt-0 mt-4"
                                       name="password"
                                       label="Пароль"
                                       :rules="rulesForPassword"
                                       type="password"></v-text-field>
-                        <v-btn :disabled="!valid" class="mt-5" color="deep-purple accent-3" width="100%" large :dark="valid">Войти</v-btn>
+                        <p v-for="err in errors" class="text-center red--text">{{ err }}</p>
+                        <v-btn :disabled="!valid" class="mt-5"
+                               type="submit"
+                               color="deep-purple accent-3" width="100%"
+                               large :dark="valid">Войти</v-btn>
                     </v-form>
                 </v-card>
             </v-col>
@@ -26,8 +30,25 @@
 <script>
     export default {
         name: "Auth",
+        methods: {
+            login() {
+                this.errors = [];
+
+                this.$store.dispatch("auth", {
+                    email: this.email,
+                    password: this.password
+                }).then((res)=>{
+                    this.$router.push({ name: "index" })
+                }).catch((err)=>{
+                    if(err.response.data.errors.credentials) {
+                        this.errors.push(err.response.data.errors.credentials);
+                    }
+                })
+            }
+        },
         data() {
             return {
+                errors: [],
                 valid: "",
                 password: "",
                 email: "",
