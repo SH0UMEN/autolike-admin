@@ -32,6 +32,22 @@
                         <v-list-item-title>Транзакции пополнения баланса</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
+                <v-list-item link @click="$router.push({ name: 'support-messages' })">
+                    <v-list-item-action>
+                        <v-icon>mdi-email</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                        <v-list-item-title>Обращения в тех. поддержку</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+                <v-list-item link @click="$router.push({ name: 'support-history' })">
+                    <v-list-item-action>
+                        <v-icon>mdi-email-open</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                        <v-list-item-title>История обращений</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
                 <v-list-item link @click="$router.push({ name: 'statistics' })">
                     <v-list-item-action>
                         <v-icon>mdi-chart-line</v-icon>

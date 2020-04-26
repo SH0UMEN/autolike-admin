@@ -6,6 +6,8 @@ import DepositHistory from '../views/DepositHistory'
 import Bots from '../views/Bots'
 import SocialsManagement from '../views/SocialsManagement'
 import IndexTemplate from '../views/IndexTemplate'
+import SupportMessages from '../views/SupportMessages'
+import SupportHistory from '../views/SupportHistory'
 import Auth from '../views/Auth'
 import store from '../store'
 import Statistics from '../views/Statistics'
@@ -63,6 +65,16 @@ const routes = [
                 path: '/social-management',
                 name: 'social-management',
                 component: SocialsManagement
+            },
+            {
+                path: '/support-messages',
+                name: 'support-messages',
+                component: SupportMessages
+            },
+            {
+                path: '/support-history',
+                name: 'support-history',
+                component: SupportHistory
             },
             {
                 path: '/bots',
