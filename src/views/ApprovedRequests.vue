@@ -6,6 +6,7 @@
                     Выплаченные заказы
                 </v-card-title>
                 <v-data-table
+                        no-data-text="Нет выплаченных заказов"
                         :headers="headers"
                         :items="items"
                         :items-per-page="5"
@@ -17,73 +18,40 @@
 </template>
 
 <script>
+    import axios from "axios"
+
     export default {
         name: "ApprovedRequests",
+        mounted() {
+             axios.post(this.$store.getters.getAPIurl + "/payment/list/complete").then((res)=>{
+                 this.items = res.data.data.list;
+
+                 for(let item of this.items) {
+                     item.updated_at = this.formatDate(item.updated_at);
+                 }
+             })
+        },
         data () {
             return {
                 headers: [
                     {
                         text: 'Пользователь',
                         align: 'start',
-                        value: 'user',
+                        value: 'name',
                     },
-                    { text: 'Сумма', value: 'money' },
-                    { text: 'Дата выплаты', value: 'date' },
+                    { text: 'Сумма', value: 'amount' },
+                    { text: 'Дата выплаты', value: 'updated_at' },
                 ],
-                items: [
-                    {
-                        user: 'shoumen',
-                        money: 1000,
-                        date: "23.04.2020"
-                    },
-                    {
-                        user: 'shoumen',
-                        money: 1300,
-                        date: "23.04.2020"
-                    },
-                    {
-                        user: 'pony',
-                        money: 1500,
-                        date: "23.04.2020"
-                    },
-                    {
-                        user: 'pony',
-                        money: 2000,
-                        date: "23.04.2020"
-                    },
-                    {
-                        user: 'shoumen',
-                        money: 1300,
-                        date: "23.04.2020"
-                    },
-                    {
-                        user: 'pony',
-                        money: 1500,
-                        date: "23.04.2020"
-                    },
-                    {
-                        user: 'shoumen',
-                        money: 1300,
-                        date: "23.04.2020"
-                    },
-                    {
-                        user: 'pony',
-                        money: 1500,
-                        date: "23.04.2020"
-                    },
-                    {
-                        user: 'shoumen',
-                        money: 1300,
-                        date: "23.04.2020"
-                    },
-                    {
-                        user: 'pony',
-                        money: 1500,
-                        date: "23.04.2020"
-                    },
-                ],
+                items: []
             }
         },
+        methods: {
+            formatDate(date) {
+                let formattedDate = new Date(date.slice(0, 19));
+
+                return `${ formattedDate.getDate() }.${ formattedDate.getMonth()+1 }.${ formattedDate.getFullYear() }`;
+            }
+        }
     }
 </script>
 
