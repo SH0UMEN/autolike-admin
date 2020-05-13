@@ -57,7 +57,7 @@
                 <v-list class="py-0">
                     <v-list-item v-for="item, i in items.expense"
                                  :key="i">
-                        На {{ formatServerDate(item.name) }}: {{ item.sum }}
+                        На {{ formatServerDate(item.name) }}: {{ item.sum }} руб.
                     </v-list-item>
                 </v-list>
 
@@ -66,7 +66,7 @@
                 <v-list class="py-0">
                     <v-list-item v-for="item, i in items.profit"
                                  :key="i">
-                        На {{ formatServerDate(item.name) }}: {{ item.sum }}
+                        На {{ formatServerDate(item.name) }}: {{ item.sum }} руб.
                     </v-list-item>
                 </v-list>
             </v-card>
