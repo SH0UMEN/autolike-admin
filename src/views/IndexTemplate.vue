@@ -64,6 +64,14 @@
                         <v-list-item-title>Управление соц. сетями</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
+                <v-list-item link @click="$router.push({ name: 'criterion' })">
+                    <v-list-item-action>
+                        <v-icon>mdi-image-filter-black-white</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                        <v-list-item-title>Критерии исполнителей</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
                 <v-list-item link @click="$router.push({ name: 'bots' })">
                     <v-list-item-action>
                         <v-icon>mdi-robot</v-icon>

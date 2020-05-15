@@ -11,6 +11,7 @@ import SupportHistory from '../views/SupportHistory'
 import Auth from '../views/Auth'
 import store from '../store'
 import Statistics from '../views/Statistics'
+import Criterion from '../views/Criterion'
 
 Vue.use(VueRouter)
 
@@ -80,6 +81,11 @@ const routes = [
                 path: '/bots',
                 name: 'bots',
                 component: Bots
+            },
+            {
+                path: '/criterion',
+                name: 'criterion',
+                component: Criterion
             },
         ]
     }
