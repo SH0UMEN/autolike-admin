@@ -1,4 +1,4 @@
-# autolike-admin
+# example
 
 ## Project setup
 ```
